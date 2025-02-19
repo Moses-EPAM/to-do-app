@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import TaskList from "./components/TaskList";
+import TaskForm from "./components/TaskForm";
+import tasksData from "./tasksData";
 
 function App() {
+  const [tasks, setTasks] = useState(tasksData);
+
+  // Function to add a task
+  const addTask = (task) => {
+    setTasks([...tasks, { id: Date.now(), ...task }]);
+  };
+
+  // Function to update a task
+  const updateTask = (id, updatedTask) => {
+    setTasks(tasks.map((task) => (task.id === id ? { ...task, ...updatedTask } : task)));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+      <h1>To-Do List</h1>
+      <TaskForm addTask={addTask} />
+      <TaskList tasks={tasks} updateTask={updateTask} />
     </div>
   );
 }
