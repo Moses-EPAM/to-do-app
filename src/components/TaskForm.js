@@ -1,9 +1,9 @@
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function TaskForm({ addTask }) {
+function TaskForm({ addTask, darkMode }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [suggestedTask, setSuggestedTask] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,31 +13,23 @@ function TaskForm({ addTask }) {
     setDescription("");
   };
 
-  // Simulated AI suggestion
-  const handleAiSuggest = () => {
-    const aiSuggestions = ["Write a blog post", "Read about AI", "Practice coding", "Go for a run"];
-    setSuggestedTask(aiSuggestions[Math.floor(Math.random() * aiSuggestions.length)]);
-  };
-
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+    <form onSubmit={handleSubmit} className={`p-4 rounded shadow-lg w-50 mx-auto ${darkMode ? "bg-secondary text-white" : "bg-light text-dark"}`}>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Task title"
         required
+        className={`form-control mb-3 ${darkMode ? "bg-dark text-white border-0" : "bg-white text-dark border"}`}
       />
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Task description"
+        className={`form-control mb-3 ${darkMode ? "bg-dark text-white border-0" : "bg-white text-dark border"}`}
       />
-      <button type="submit">Add Task</button>
-      <button type="button" onClick={handleAiSuggest}>
-        AI Suggest Task
-      </button>
-      {suggestedTask && <p>Suggested Task: {suggestedTask}</p>}
+      <button type="submit" className="btn btn-primary w-100">Add Task</button>
     </form>
   );
 }
