@@ -44,7 +44,11 @@ function TaskList({ tasks, updateTask, darkMode }) {
       {tasks.map((task) => (
         <div
           key={task.id}
-          className={`p-3 rounded shadow border mb-3 ${darkMode ? "bg-dark text-white border-light" : "bg-light text-dark border-dark"}`}
+          className={`p-3 rounded shadow border mb-3 ${
+            darkMode
+              ? "bg-dark text-white border-light"
+              : "bg-light text-dark border-dark"
+          }`}
         >
           <h3>{task.title}</h3>
 
@@ -54,13 +58,23 @@ function TaskList({ tasks, updateTask, darkMode }) {
               <textarea
                 value={newDescription}
                 onChange={(e) => setNewDescription(e.target.value)}
-                className={`form-control mb-2 ${darkMode ? "bg-secondary text-white border-0" : "bg-white text-dark border"}`}
+                className={`form-control mb-2 ${
+                  darkMode
+                    ? "bg-secondary text-white border-0"
+                    : "bg-white text-dark border"
+                }`}
               />
               <div className="d-flex justify-content-between">
-                <button onClick={() => handleSaveClick(task.id)} className="btn btn-success flex-fill me-2">
+                <button
+                  onClick={() => handleSaveClick(task.id)}
+                  className="btn btn-success flex-fill me-2"
+                >
                   Save
                 </button>
-                <button onClick={() => setEditingTaskId(null)} className="btn btn-secondary flex-fill">
+                <button
+                  onClick={() => setEditingTaskId(null)}
+                  className="btn btn-secondary flex-fill"
+                >
                   Cancel
                 </button>
               </div>
@@ -69,7 +83,10 @@ function TaskList({ tasks, updateTask, darkMode }) {
             <>
               <p>{task.description || "No description available"}</p>
               {task.status !== "DONE" && (
-                <button onClick={() => handleEditClick(task)} className="btn btn-warning w-100 mb-2">
+                <button
+                  onClick={() => handleEditClick(task)}
+                  className="btn btn-warning w-100 mb-2"
+                >
                   Edit Description
                 </button>
               )}
@@ -82,17 +99,27 @@ function TaskList({ tasks, updateTask, darkMode }) {
               <select
                 value={newStatus}
                 onChange={(e) => setNewStatus(e.target.value)}
-                className={`form-select mb-2 ${darkMode ? "bg-secondary text-white border-0" : "bg-white text-dark border"}`}
+                className={`form-select mb-2 ${
+                  darkMode
+                    ? "bg-secondary text-white border-0"
+                    : "bg-white text-dark border"
+                }`}
               >
                 <option value="TO-DO">TO-DO</option>
                 <option value="IN-PROGRESS">IN-PROGRESS</option>
                 <option value="DONE">DONE</option>
               </select>
               <div className="d-flex justify-content-between">
-                <button onClick={() => handleStatusSaveClick(task.id)} className="btn btn-success py-2 flex-fill me-2">
+                <button
+                  onClick={() => handleStatusSaveClick(task.id)}
+                  className="btn btn-success py-2 flex-fill me-2"
+                >
                   Save
                 </button>
-                <button onClick={() => setEditingStatusId(null)} className="btn btn-secondary py-2 flex-fill">
+                <button
+                  onClick={() => setEditingStatusId(null)}
+                  className="btn btn-secondary py-2 flex-fill"
+                >
                   Cancel
                 </button>
               </div>
@@ -101,7 +128,10 @@ function TaskList({ tasks, updateTask, darkMode }) {
             <p>
               <strong>Status:</strong> {task.status}{" "}
               {task.status !== "DONE" && (
-                <button onClick={() => handleStatusEditClick(task)} className="btn btn-info btn-sm ms-2">
+                <button
+                  onClick={() => handleStatusEditClick(task)}
+                  className="btn btn-info btn-sm ms-2"
+                >
                   Edit
                 </button>
               )}
@@ -109,7 +139,10 @@ function TaskList({ tasks, updateTask, darkMode }) {
           )}
 
           {/* Archive Button */}
-          <button onClick={() => handleArchiveClick(task.id)} className="btn btn-danger my-1 w-100">
+          <button
+            onClick={() => handleArchiveClick(task.id)}
+            className="btn btn-danger my-1 w-100"
+          >
             Archive
           </button>
         </div>
